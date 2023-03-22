@@ -1,6 +1,6 @@
 
 const utils = {
-  reverse: function() {
+  reverse: function(source) {
     let rev;
 
     if (typeof source === 'object') {
@@ -15,43 +15,43 @@ const utils = {
       };
      };
      
-    console.log(rev);
+    return rev;
   },
 
-  verifyNumbers: function() {
+  verifyNumbers: function(source) {
     let num =[];
     for (let i = 0; i < source.length; i++) {
       if (typeof source[i] !== 'number') continue; 
        num[num.length] = source[i]; 
     }
-    console.log(num);
+    return num;
   },
 
-  getMin: function() {
+  getMin: function(source) {
     let min = source[0];
     for (let i = 0; i < source.length; i++) {
       if (min > source[i]) {
         min = source[i];
       };
     };
-   console.log(min);
+    return min;
   },
 
-  getAverage: function() {
+  getAverage: function(source) {
     let sum = 0;
     for (let i = 0; i < source.length; i++) {
       sum += source[i];
     };
-    console.log(sum / source.length); 
+     return sum / source.length; 
   },
 
-  getMaxString: function() {
+  getMaxString: function(source) {
     let maxStr = '';
     for ( let i = 0; i < source.length; i++) {
        if (source[i].length > maxStr.length) {
         maxStr = source[i];
        };
     }
-    console.log(maxStr);
+     return maxStr;
   }
 };
