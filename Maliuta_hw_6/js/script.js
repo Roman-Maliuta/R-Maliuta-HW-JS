@@ -5,193 +5,65 @@ let numTestOne;
 let numTestTwo;
 let result;
 let newOrder;
-let history;
 
 function checkingNumOne() {
   do { 
-    numbreOne = prompt('Input first number');
+    if (userOrder === '**') {
+      numbreOne = prompt('Input number to raises');
+    } else if (userOrder === 'cos') {
+      numbreOne = prompt('Input number to need a returns the cosine (in radians)');
+    } else if  (userOrder === 'sin') {
+      numbreOne = prompt('Input number to need a returns the sine (in radians)');
+    } else  {
+      numbreOne = prompt('Input first number');
+    }; 
     numTestOne = +numbreOne;
   } while (Boolean(numbreOne) === false || numTestOne !== +numbreOne);
 }
 
 function checkingNumTwo() {
   do { 
-    numbreTwo = prompt('Input second number');
+    if (userOrder === '**') {
+      numbreTwo = prompt('Input number of power');
+    } else  {
+      numbreTwo = prompt('Input second number');
+    };
     numTestTwo = +numbreTwo;
   } while (Boolean(numbreTwo) === false || numTestTwo !== +numbreTwo);
 
-}
-
-function checkingNumRais() {
-  do { 
-    numbreOne = prompt('Input number to raises');
-    numTestOne = +numbreOne;
-  } while (Boolean(numbreOne) === false || numTestOne !== +numbreOne);
-}
-
-function checkingNumPow() {
-  do { 
-    numbreTwo = prompt('Input number of power');
-    numTestTwo = +numbreTwo;
-  } while (Boolean(numbreTwo) === false || numTestTwo !== +numbreTwo);
-
-}
-
-function checkingNumCos() {
-  do { 
-    numbreOne = prompt('Input number to need a returns the cosine (in radians)');
-    numTestOne = +numbreOne;
-  } while (Boolean(numbreOne) === false || numTestOne !== +numbreOne);
-}
-
-function checkingNumSin() {
-  do { 
-    numbreOne = prompt('Input number to need a returns the sine (in radians)');
-    numTestOne = +numbreOne;
-  } while (Boolean(numbreOne) === false || numTestOne !== +numbreOne);
 }
 
 function addition(numbreOne, numbreTwo) {
-  result = +numbreOne + +numbreTwo;
-  return result;
+  return +numbreOne + +numbreTwo;
 }
 
 function subtraction(numbreOne, numbreTwo) {
-  result = +numbreOne - +numbreTwo;
-  return result;
+  return +numbreOne - +numbreTwo;
 }
 
 function multiplication(numbreOne, numbreTwo) {
-  result = +numbreOne * +numbreTwo;
-  return result;
+  return +numbreOne * +numbreTwo;
 }
 
 function division(numbreOne, numbreTwo) {
-  result = +numbreOne / +numbreTwo;
-  return result;
+  return +numbreOne / +numbreTwo;
 }
 
 function exponentiation(numbreOne, numbreTwo) {
-  result = (+numbreOne) ** +numbreTwo;
-  return result;
+  return (+numbreOne) ** +numbreTwo;
 }
 
 function cos(numbreOne) {
-  result =  Math.cos(+numbreOne);
-  return result;
+  return Math.cos(+numbreOne);
 }
 
 function sin(numbreOne) {
-  result =  Math.sin(+numbreOne);
-  return result;
+  return Math.sin(+numbreOne);
 }
-
-do {
-      userOrder = prompt(
-     `Please  select the operation: 
-      Addition (Please input '+')
-      Subtraction (Please input '-')
-      Multiplication (Please input '*')
-      Division (Please input '/')
-      Exponentiation (Please input '**')
-      Returns the cosine of a number (Please input 'cos')
-      Returns the sine of a number (Please input 'sin')`
-      );
-    } while ( userOrder !== '+' &&  
-       userOrder !== '-' && 
-       userOrder !== '*' && 
-       userOrder !== '/' && 
-       userOrder !== '**' && 
-       userOrder !== 'cos' && 
-       userOrder !== 'sin'|| 
-       Boolean(userOrder) === false
-      );
-
-switch(userOrder) {
-
-    case '+': 
-     checkingNumOne();
-     
-     checkingNumTwo();
-
-     addition(numbreOne, numbreTwo);
-
-     history = `Addition: ${+numbreOne} + ${+numbreTwo} = ${result}`;
-
-     alert(`Operation Addition finished with result ${result}`); break;
-
-    case '-':
-      checkingNumOne();
-     
-      checkingNumTwo();
- 
-      subtraction(numbreOne, numbreTwo);
-
-      history = `Subtraction: ${+numbreOne} - ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Subtraction finished with result ${result}`); break;
-
-    case '*':
-      checkingNumOne();
-     
-      checkingNumTwo();
- 
-      multiplication(numbreOne, numbreTwo);
-
-      history = `Multiplication: ${+numbreOne} * ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Multiplication finished with result ${result}`); break;
-
-    case '/':
-      checkingNumOne();
-     
-      checkingNumTwo();
- 
-      division(numbreOne, numbreTwo);
-
-      history = `Division: ${+numbreOne} / ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Division finished with result ${result}`); break;
-
-    case '**':
-      checkingNumRais(); 
-     
-      checkingNumPow();
- 
-      exponentiation(numbreOne, numbreTwo);
-
-      history = `Exponentiation: ${+numbreOne}  raises to  ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Exponentiation finished with result ${result}`); break;
-
-    case 'cos':
-      checkingNumCos();
-
-      cos(numbreOne);
-
-      history = `Returns the cosine of a ${+numbreOne} finished with result ${result}`;
-
-      alert(`Operation Returns the cosine of a number finished with result ${result}`); break;
-
-    case 'sin':
-      checkingNumSin();
-
-      sin(numbreOne);
-
-      history = `Returns the sine of a ${+numbreOne} finished with result ${result}`;
-
-      alert(`Operation Returns the sine of a number finished with result ${result}`); break;
-};
 
 const array = ['Operation history:'];
 
-array[array.length] = history;
-
-
-
-newOrder = confirm(`Would you like to do any other operation?`);
-
-while (newOrder=== true) {
+do {
   do {
     userOrder = prompt(
    `Please  select the operation: 
@@ -205,15 +77,15 @@ while (newOrder=== true) {
     History of operation (Please input 'h')`
     );
   } while ( userOrder !== '+' &&  
-     userOrder !== '-' && 
-     userOrder !== '*' && 
-     userOrder !== '/' && 
-     userOrder !== '**' && 
-     userOrder !== 'cos' && 
-     userOrder !== 'sin' &&
-     userOrder !== 'h'|| 
-     userOrder === ''
-    );
+   userOrder !== '-' && 
+   userOrder !== '*' && 
+   userOrder !== '/' && 
+   userOrder !== '**' && 
+   userOrder !== 'cos' && 
+   userOrder !== 'sin' &&
+   userOrder !== 'h' &&
+   userOrder !== null
+  );
 
  switch(userOrder) {
    case '+': 
@@ -221,9 +93,9 @@ while (newOrder=== true) {
      
      checkingNumTwo();
 
-     addition(numbreOne, numbreTwo);
+     result = addition(numbreOne, numbreTwo);
 
-     history = `Addition: ${+numbreOne} + ${+numbreTwo} = ${result}`;
+     array[array.length] = `Addition: ${+numbreOne} + ${+numbreTwo} = ${result}`;
 
      alert(`Operation Addition finished with result ${result}`); break;
 
@@ -232,9 +104,9 @@ while (newOrder=== true) {
      
      checkingNumTwo();
 
-     subtraction(numbreOne, numbreTwo);
+     result = subtraction(numbreOne, numbreTwo);
 
-     history = `Subtraction: ${+numbreOne} - ${+numbreTwo} = ${result}`;
+     array[array.length] = `Subtraction: ${+numbreOne} - ${+numbreTwo} = ${result}`;
 
      alert(`Operation Subtraction finished with result ${result}`); break;
 
@@ -243,9 +115,9 @@ while (newOrder=== true) {
      
      checkingNumTwo();
 
-     multiplication(numbreOne, numbreTwo);
+     result = multiplication(numbreOne, numbreTwo);
 
-     history = `Multiplication: ${+numbreOne} * ${+numbreTwo} = ${result}`;
+     array[array.length] = `Multiplication: ${+numbreOne} * ${+numbreTwo} = ${result}`;
 
      alert(`Operation Multiplication finished with result ${result}`); break;
 
@@ -254,38 +126,38 @@ while (newOrder=== true) {
      
      checkingNumTwo();
 
-     division(numbreOne, numbreTwo);
+     result = division(numbreOne, numbreTwo);
 
-     history = `Division: ${+numbreOne} / ${+numbreTwo} = ${result}`;
+     array[array.length] = `Division: ${+numbreOne} / ${+numbreTwo} = ${result}`;
 
      alert(`Operation Division finished with result ${result}`); break;
 
    case '**':
-     checkingNumRais(); 
+     checkingNumOne();
      
-     checkingNumPow();
+     checkingNumTwo();
 
-     exponentiation(numbreOne, numbreTwo);
+     result = exponentiation(numbreOne, numbreTwo);
 
-     history = `Exponentiation: ${+numbreOne}  raises to  ${+numbreTwo} = ${result}`;
+     array[array.length] = `Exponentiation: ${+numbreOne}  raises to  ${+numbreTwo} = ${result}`;
 
      alert(`Operation Exponentiation finished with result ${result}`); break;
 
    case 'cos':
-     checkingNumCos();
+     checkingNumOne()
 
-     cos(numbreOne);
-
-     history = `Returns the cosine of a ${+numbreOne} finished with result ${result}`;
+     result = cos(numbreOne);
+     
+     array[array.length] = `Returns the cosine of a ${+numbreOne} finished with result ${result}`;
 
      alert(`Operation Returns the cosine of a number finished with result ${result}`); break;
 
    case 'sin':
-     checkingNumSin();
+     checkingNumOne()
 
-     sin(numbreOne);
-
-     history = `Returns the sine of a ${+numbreOne} finished with result ${result}`;
+     result = sin(numbreOne);
+     
+     array[array.length] =  `Returns the sine of a ${+numbreOne} finished with result ${result}`;
 
      alert(`Operation Returns the sine of a number finished with result ${result}`); break;
 
@@ -298,6 +170,5 @@ while (newOrder=== true) {
       }; break;
   };
 
- array[array.length] = history;
  newOrder = confirm(`Would you like to do any other operation?`);
-};
+} while (newOrder=== true);
