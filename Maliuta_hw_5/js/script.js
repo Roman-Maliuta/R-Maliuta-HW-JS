@@ -5,150 +5,10 @@ let numTestOne;
 let numTestTwo;
 let result;
 let newOrder;
-let history;
-
-do {
-      userOrder = prompt(
-     `Please  select the operation: 
-      Addition (Please input '+')
-      Subtraction (Please input '-')
-      Multiplication (Please input '*')
-      Division (Please input '/')
-      Exponentiation (Please input '**')
-      Returns the cosine of a number (Please input 'cos')
-      Returns the sine of a number (Please input 'sin')`
-      );
-    } while ( userOrder !== '+' &&  
-       userOrder !== '-' && 
-       userOrder !== '*' && 
-       userOrder !== '/' && 
-       userOrder !== '**' && 
-       userOrder !== 'cos' && 
-       userOrder !== 'sin'|| 
-       userOrder === ''
-      );
-
-switch(userOrder) {
-
-    case '+': 
-      do { 
-       numbreOne = prompt('Input first number');
-       numTestOne = +numbreOne;
-     } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-     
-     do { 
-       numbreTwo = prompt('Input second number');
-       numTestTwo = +numbreTwo;
-     } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-
-      result = +numbreOne + +numbreTwo;
-
-      history = `Addition: ${+numbreOne} + ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Addition finished with result ${result}`); break;
-
-    case '-':
-      do { 
-        numbreOne = prompt('Input first number');
-        numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-      
-      do { 
-        numbreTwo = prompt('Input second number');
-        numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-
-      result = +numbreOne - +numbreTwo;
-
-      history = `Subtraction: ${+numbreOne} - ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Subtraction finished with result ${result}`); break;
-
-    case '*':
-      do { 
-        numbreOne = prompt('Input first number');
-        numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-      
-      do { 
-        numbreTwo = prompt('Input second number');
-        numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-
-      result = +numbreOne * +numbreTwo;
-
-      history = `Multiplication: ${+numbreOne} * ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Multiplication finished with result ${result}`); break;
-
-    case '/':
-      do { 
-        numbreOne = prompt('Input first number');
-        numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-      
-      do { 
-        numbreTwo = prompt('Input second number');
-        numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-
-      result = +numbreOne / +numbreTwo;
-
-      history = `Division: ${+numbreOne} / ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Division finished with result ${result}`); break;
-
-    case '**':
-      do { 
-        numbreOne = prompt('Input number to raises');
-        numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-      
-      do { 
-        numbreTwo = prompt('Input number of power');
-        numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-      
-      result = (+numbreOne) ** +numbreTwo;
-
-      history = `Exponentiation: ${+numbreOne}  raises to  ${+numbreTwo} = ${result}`;
-
-      alert(`Operation Exponentiation finished with result ${result}`); break;
-
-    case 'cos':
-      do { 
-        numbreOne = prompt('Input number to need a returns the cosine (in radians)');
-        numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-
-      history = `Returns the cosine of a ${+numbreOne} finished with result ${result}`;
-
-      result = Math.cos(+numbreOne);
-
-      alert(`Operation Returns the cosine of a number finished with result ${result}`); break;
-
-    case 'sin':
-      do { 
-        numbreOne = prompt('Input number to need a returns the sine (in radians)');
-        numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-      
-      result = Math.sin(+numbreOne);
-      
-      history = `Returns the sine of a ${+numbreOne} finished with result ${result}`;
-
-      alert(`Operation Returns the sine of a number finished with result ${result}`); break;
-};
 
 const array = ['Operation history:'];
 
-array[array.length] = history;
-
-
-
-newOrder = confirm(`Would you like to do any other operation?`);
-
-while (newOrder=== true) {
+do {
   do {
     userOrder = prompt(
    `Please  select the operation: 
@@ -168,129 +28,104 @@ while (newOrder=== true) {
      userOrder !== '**' && 
      userOrder !== 'cos' && 
      userOrder !== 'sin' &&
-     userOrder !== 'h'|| 
-     userOrder === ''
+     userOrder !== 'h' &&
+     userOrder !== null
     );
 
- switch(userOrder) {
-   case '+': 
-      do { 
-       numbreOne = prompt('Input first number');
-       numTestOne = +numbreOne;
-      }  while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-   
-      do { 
-       numbreTwo = prompt('Input second number');
-       numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
+ if (userOrder === '+' || userOrder === '-' || userOrder === '*' || userOrder === '/' || userOrder === '**') {
+   do { 
+     if (userOrder === '**') {
+      numbreOne = prompt('Input number to raises');
+    } else  {
+      numbreOne = prompt('Input first number');
+    };  
+    numTestOne = +numbreOne;
+   }  while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
+
+   do {
+    if (userOrder === '**') {
+      numbreTwo = prompt('Input number of power');
+    } else  {
+      numbreTwo = prompt('Input second number');
+    }; 
+    numTestTwo = +numbreTwo;
+   } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
+
+   if (userOrder=== '+') {
+    result = +numbreOne + +numbreTwo;
   
-     result = +numbreOne + +numbreTwo;
+    array[array.length] = `Addition: ${+numbreOne} + ${+numbreTwo} = ${result}`;
+ 
+    alert(`Operation Addition finished with result ${result}`);
+
+   } else if (userOrder === '-') {
+    result = +numbreOne - +numbreTwo;
+
+    array[array.length] = `Subtraction: ${+numbreOne} - ${+numbreTwo} = ${result}`;
   
-     history = `Addition: ${+numbreOne} + ${+numbreTwo} = ${result}`;
-  
-     alert(`Operation Addition finished with result ${result}`); break;
+    alert(`Operation Subtraction finished with result ${result}`);
 
-   case '-':
-      do { 
-       numbreOne = prompt('Input first number');
-       numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-     
-      do { 
-       numbreTwo = prompt('Input second number');
-       numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-   
-     result = +numbreOne - +numbreTwo;
+   } else if (userOrder === '*') {
+    
+    result = +numbreOne * +numbreTwo;
 
-     history = `Subtraction: ${+numbreOne} - ${+numbreTwo} = ${result}`;
-   
-     alert(`Operation Subtraction finished with result ${result}`); break;
+    array[array.length] = `Multiplication: ${+numbreOne} * ${+numbreTwo} = ${result}`;
 
-   case '*':
-      do { 
-       numbreOne = prompt('Input first number');
-       numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-  
-      do { 
-       numbreTwo = prompt('Input second number');
-       numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
+    alert(`Operation Multiplication finished with result ${result}`);
 
-     result = +numbreOne * +numbreTwo;
+   }  else if (userOrder === '/') {
+       
+    result = +numbreOne / +numbreTwo;
 
-     history = `Multiplication: ${+numbreOne} * ${+numbreTwo} = ${result}`;
+    array[array.length] = `Division: ${+numbreOne} / ${+numbreTwo} = ${result}`;
 
-     alert(`Operation Multiplication finished with result ${result}`); break;
+    alert(`Operation Division finished with result ${result}`);
 
-   case '/':
-      do { 
-       numbreOne = prompt('Input first number');
-       numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-  
-      do { 
-       numbreTwo = prompt('Input second number');
-       numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-   
-     result = +numbreOne / +numbreTwo;
+   }  else if (userOrder === '**') {
+ 
+    result = (+numbreOne) ** +numbreTwo;
 
-     history = `Division: ${+numbreOne} / ${+numbreTwo} = ${result}`;
+    array[array.length] = `Exponentiation: ${+numbreOne}  raises to  ${+numbreTwo} = ${result}`;
 
-     alert(`Operation Division finished with result ${result}`); break;
+    alert(`Operation Exponentiation finished with result ${result}`);
 
-   case '**':
-      do { 
-       numbreOne = prompt('Input number to raises');
-       numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-  
-      do { 
-       numbreTwo = prompt('Input number of power');
-       numTestTwo = +numbreTwo;
-      } while (numbreTwo === '' || numbreTwo ===  null || numTestTwo !== +numbreTwo);
-  
-     result = (+numbreOne) ** +numbreTwo;
+   }
 
-     history = `Exponentiation: ${+numbreOne}  raises to  ${+numbreTwo} = ${result}`;
+  } else if (userOrder === 'cos'|| userOrder === 'sin') {
+    do { 
+        if (userOrder === 'cos') {
+         numbreOne = prompt('Input number to need a returns the cosine (in radians)');
+       } else if  (userOrder === 'sin') {
+         numbreOne = prompt('Input number to need a returns the sine (in radians)');
+       };  
+      numTestOne = +numbreOne;
+     } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
 
-     alert(`Operation Exponentiation finished with result ${result}`); break;
+    if (userOrder === 'cos') {
 
-   case 'cos':
-      do { 
-       numbreOne = prompt('Input number to need a returns the cosine (in radians)');
-       numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
+    result = Math.cos(+numbreOne);
 
-     history = `Returns the cosine of a ${+numbreOne} finished with result ${result}`;
+    array[array.length] = `Returns the cosine of a ${+numbreOne} finished with result ${result}`;
 
-     result = Math.cos(+numbreOne);
+    alert(`Operation Returns the cosine of a number finished with result ${result}`);
 
-     alert(`Operation Returns the cosine of a number finished with result ${result}`); break;
+   } else if (userOrder === 'sin') {
+ 
+    result = Math.sin(+numbreOne);
+ 
+    array[array.length] = `Returns the sine of a ${+numbreOne} finished with result ${result}`;
 
-   case 'sin':
-      do { 
-       numbreOne = prompt('Input number to need a returns the sine (in radians)');
-       numTestOne = +numbreOne;
-      } while (numbreOne === '' || numbreOne ===  null || numTestOne !== +numbreOne);
-  
-     result = Math.sin(+numbreOne);
-  
-     history = `Returns the sine of a ${+numbreOne} finished with result ${result}`;
+    alert(`Operation Returns the sine of a number finished with result ${result}`);
+   }
 
-     alert(`Operation Returns the sine of a number finished with result ${result}`); break;
+  } else if (userOrder === 'h') {
+    let i = 1;
 
-   case 'h':
-      let i = 1;
+    while(i < array.length) {
+      console.log(`Operation ${i}: ${array[i]}`); 
+    i++;
+    };
+  }
 
-      while(i < array.length) {
-        console.log(`Operation ${i}: ${array[i]}`); 
-      i++;
-      }; break;
-  };
-
- array[array.length] = history;
  newOrder = confirm(`Would you like to do any other operation?`);
-};
+} while (newOrder=== true);
