@@ -1,3 +1,4 @@
+
 const test = [
     {
         name: 'Dallas Prosacco',
@@ -210,114 +211,97 @@ const test = [
 ];
 
 
-let getAverage = function(test) {
-    test.forEach(function(item) {
-        const sum = item.marks.reduce((acc, current) => { 
-        acc = acc + current;
-        return acc;
-     }, 0);
-      return item["average mark"] =  sum / item.marks.length;
-  });  
+console.log(test);
+
+
+
+function calc(item){
+     const sum = item.marks.reduce((acc, current) => { 
+     acc = acc + current;
+    return acc;
+ }, 0);
+ return sum;
 };
 
 
-getAverage(test);   //use for cheking
+let getAverage = function(arr) {
+ const testTwo = JSON.parse(JSON.stringify(arr));
+    testTwo.map(function(item) {
+    item["averageMark"] = calc(item) / item.marks.length;
+  });
+  return testTwo;
+};
 
-//console.log(test);    //use for cheking
+
+console.log(getAverage(test));    //use for cheking
 
 
-let getDelete = function(test) {
-    let deleteList = [];
-    test.forEach(function(item) {
-    const sum = item.marks.reduce((acc, current) => { 
-        acc = acc + current;
-        return acc;
-     }, 0);
-      let average = sum / item.marks.length;
-      if(average < 50) {
-         deleteList.push({
-            name: item.name,
-            averageMark: average,
-        });;
+let getDelete = function(arr) {
+     const deleteList = [];
+     const testTwo = JSON.parse(JSON.stringify(arr)); 
+     testTwo.map(function(item) {
+        let average = calc(item) / item.marks.length;
+     if (average < 50) {
+        deleteList.push(item);;
       };
   });
   return deleteList;
 };
 
-getDelete(test);  //use for cheking
-
-//console.log(getDelete(test));  //use for cheking
+console.log(getDelete(test));  //use for cheking
 
 
-let MedianaMarks = function(test) {
-    test.forEach(function(item) {
-    let testClone = item.marks.slice().sort((a, b) =>  a - b);
+let setMedianaMarks = function(arr) {
+    const testTwo = JSON.parse(JSON.stringify(arr)); 
+    testTwo.map(function(item) {
+    let testClone = item.marks.sort((a, b) =>  a - b);
     if (testClone.lenght % 2 !== 0) {
         return item["median mark"] = testClone[Math.ceil(testClone.length / 2)];
     } else {
         return item["median mark"] = (testClone[testClone.length / 2] + 
         testClone[testClone.length / 2 - 1]) / 2;
     };
-});
-
+ });
+ return testTwo;
 };
 
-MedianaMarks(test); //use for cheking
-
-//console.log((test)); //use for cheking
+console.log(setMedianaMarks(test)); //use for cheking
 
 
-let newStudent = function(test) {
-    test.push({
-        name: '',
-        specialty: '', 
-        marks: []
+let newStudent = function(arr,name,specialty, marks) {
+    const testTwo = JSON.parse(JSON.stringify(arr)); 
+    testTwo.push({
+        name,
+        specialty, 
+        marks,
     });
+return testTwo;
 };
 
-newStudent(test); //use for cheking
+console.log(newStudent(test, '','', [])); //use for cheking
+ 
 
-//console.log((test)); //use for cheking
-
-let averageGrade = function(test) {
-    let averageGradeList =[];
-    test.forEach(function(item) {
-    const sum = item.marks.reduce((acc, current) => { 
-        acc = acc + current;
-        return acc;   
-    }, 0);
-        let average = sum / item.marks.length;
-        averageGradeList.push({
-            name: item.name,
-            averageMark: average,
-        });
+let averageGrade = function(arr) {
+    const testTwo = JSON.parse(JSON.stringify(arr)); 
+    testTwo.map(function(item) {
+     return item["averageMark"] =  calc(item) / item.marks.length;
     });
-   averageGradeList.sort((a, b) =>  b.averageMark - a.averageMark);
-    return  averageGradeList;
+    testTwo.sort((a, b) =>  b.averageMark - a.averageMark);
+    return testTwo;
 };
 
-averageGrade(test);  //use for cheking
 
-//console.log(averageGrade(test));  //use for cheking
+console.log(averageGrade(test));  //use for cheking
 
 
-let top5Student = function(test) {
-    let averageGradeList =[];
-    test.forEach(function(item) {
-    const sum = item.marks.reduce((acc, current) => { 
-        acc = acc + current;
-        return acc;   
-    }, 0);
-        let average = sum / item.marks.length;
-        averageGradeList.push({
-            name: item.name,
-            averageMark: average,
-        });
+let top5Student = function(arr) {
+    const testTwo = JSON.parse(JSON.stringify(arr)); 
+    testTwo.map(function(item) {
+     return item["averageMark"] =  calc(item) / item.marks.length;
     });
-   averageGradeList.sort((a, b) =>  b.averageMark - a.averageMark).splice(5);
-   return  averageGradeList;
+    testTwo.sort((a, b) =>  b.averageMark - a.averageMark).splice(5);
+    return testTwo;
 };
 
-top5Student(test);  //use for cheking
 
-//console.log(top5Student(test)); //use for cheking
+console.log(top5Student(test)); //use for cheking
