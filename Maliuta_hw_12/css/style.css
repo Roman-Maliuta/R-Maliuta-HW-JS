@@ -1,0 +1,13 @@
+.item{
+    border: 2px solid #000;
+    margin: 15px;
+    padding: 5px;
+}
+
+.text-change{
+text-decoration: line-through;
+}
+
+.hide{
+    display: none;
+}
