@@ -35,7 +35,7 @@ function createLi() {
 
     checkbox.addEventListener('change', ()=> {
         li.classList.toggle('text-change');
-        btnDelete.classList.remove('hide');
+        btnDelete.classList.toggle('hide');
     });
     
     ol.append(li);
@@ -47,4 +47,13 @@ function createLi() {
 };
 
 
-btnAdd.addEventListener('click', createLi);
+btnAdd.addEventListener('click', ()=> {
+    if (
+     inputTitle.value !== '' &&
+     inputDescr.value !== '' &&
+     selectPriority.value !== ''
+     ) {
+        createLi();
+     }
+ });
+
