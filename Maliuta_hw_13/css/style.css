@@ -1,0 +1,13 @@
+.hide{
+    display: none;
+}
+
+.message-success{
+    font-weight: bold;
+    font-size: 48px;
+}
+
+.message-fail{
+    font-size: 18px;
+    color: red;
+}
