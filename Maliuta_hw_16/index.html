@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework</title>
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div id="carouselExampleControls" class="carousel slide">
+            <div id="carousel-inner">
+                <div class="carousel-item">
+                    <p class="title">Slide Title 1</p>
+                    <p class="descr">Slide description 1</p>
+                </div>
+                <div class="carousel-item hide">
+                    <p class="title">Slide Title 2</p>
+                    <p class="descr">Slide description 2</p>
+                </div>
+                <div class="carousel-item hide">
+                    <p class="title">Slide Title 3</p>
+                    <p class="descr">Slide description 3</p>
+                </div>
+              </div>
+        </div>
+          <button id="btn-first">First</button>
+          <button id="btn-prev">Previous</button>
+          <span id="slide-number"></span>
+          <button id="btn-next">Next</button>
+          <button id="btn-last">Last</button>
+          <div class="open-by-number">
+            <input class="field" type="text" id="field-slide-num" placeholder="Slide Number">
+            <button id="open-slide-num">Open</button>
+          </div>
+          <div class="create-slide">
+             <input class="field" type="text" name="title" id="field-title" placeholder="Slide title">
+             <input class="field" type="text" name="descritpion" id="field-descritpion" placeholder="Slide descritpion">
+             <button id="add-end">add in the end</button>
+               <div class="position-choose">
+                 <input class="field" type="text" id="field-position" placeholder="Slide position number">
+                 <button id="add-position">add in the position</button>
+              </div>
+          </div>
+          <button id="remove-end">Remove last slide</button>
+           <div class="position-choose">
+             <input class="field" type="text" id="field-remove" placeholder="Number slide to remove">
+             <button id="remove-position">Remove</button>
+           </div>
+    </div>
+</body>
+</html>
