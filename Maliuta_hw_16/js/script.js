@@ -1,29 +1,12 @@
-const btnFirst = document.getElementById('btn-first');
-const btnPrev = document.getElementById('btn-prev');
-const btnNext = document.getElementById('btn-next');
-const btnLast = document.getElementById('btn-last');
-
-const inputSlideNum = document.getElementById('field-slide-num');
-const btnOpenByNum = document.getElementById('open-slide-num');
-
-const inputTitle = document.getElementById('field-title');
-const inputDescr = document.getElementById('field-descritpion');
-const inputPosition = document.getElementById('field-position');
-const btnAddEnd = document.getElementById('add-end');
-const btnAddPosition = document.getElementById('add-position');
-
-const btnRemoveEnd = document.getElementById('remove-end');
-
-const inputSlideRemove = document.getElementById('field-remove');
-const btnRemovePosition = document.getElementById('remove-position');
-
-
-function Slider(sliderEl) {
-    this.sliderEl = sliderEl;
+function Slider(sliderNew) {
+    this.sliderNew = sliderNew;
+    this.sliderEl = this.sliderNew.querySelector('.carousel-inner');
 
     let count = 0;
 
-
+    this.btnFirst = this.sliderNew.querySelector('.btn-first').addEventListener(
+         'click', ()=> {this.firstSlide()}
+        ); 
     this.firstSlide = function() {
         if (count !== 0) {
             this.sliderEl.children[0].classList.remove('hide');
@@ -31,7 +14,10 @@ function Slider(sliderEl) {
         count = 0; 
         };
     };
-
+    
+    this.btnNext = this.sliderNew.querySelector('.btn-next').addEventListener(
+         'click', ()=> {this.nextSlide()}
+        ); 
     this.nextSlide = function() {
         if (count !== (this.sliderEl.children.length)-1) {
             this.sliderEl.children[count].classList.toggle('hide');
@@ -41,7 +27,10 @@ function Slider(sliderEl) {
             this.firstSlide();  
         }
     };
-
+    
+    this.btnLast = this.sliderNew.querySelector('.btn-last').addEventListener(
+         'click', ()=> {this.lastSlide()}
+        ); 
     this.lastSlide = function() {
         if (count !== (this.sliderEl.children.length)-1) {
         let inLast = (this.sliderEl.children.length)-1;
@@ -50,7 +39,10 @@ function Slider(sliderEl) {
         count = inLast; 
         };
     };
-    
+
+    this.btnPrev = this.sliderNew.querySelector('.btn-prev').addEventListener(
+         'click', ()=> {this.prevSlide()}
+        ); 
     this.prevSlide = function() {
         if (count !== 0) {
         this.sliderEl.children[count].classList.toggle('hide');
@@ -61,32 +53,50 @@ function Slider(sliderEl) {
         }
     };
 
+    this.inputSlideNum = this.sliderNew.querySelector('.field-slide-num');
+    this.btnOpenByNum = this.sliderNew.querySelector('.open-slide-num').addEventListener(
+        'click', ()=> {
+        if(this.inputSlideNum.value !== '') {
+            this.openSlideByIndex(this.inputSlideNum.value);
+        }
+    });
     this.openSlideByIndex = function(number)  {
         let openValue = (number)-1;
         
         if (Number.isNaN(openValue)) {
-           inputSlideNum.value = '';
+            this.inputSlideNum.value = '';
            return; 
         };
 
         if (openValue > (this.sliderEl.children.length)-1) {
-            inputSlideNum.value = '';
+            this. inputSlideNum.value = '';
             return;
         };
     
         if (count === openValue) {
-            inputSlideNum.value = '';
+            this.inputSlideNum.value = '';
             return;
         }; 
     
         this.sliderEl.children[openValue].classList.remove('hide');
         this.sliderEl.children[count].classList.add('hide');
         count = openValue;
-        inputSlideNum.value = '';
+        this.inputSlideNum.value = '';
         openValue = 0;
         
     };
 
+    
+    this.inputTitle = this.sliderNew.querySelector('.field-title');
+    this.inputDescr = this.sliderNew.querySelector('.field-descritpion');
+    this.inputPosition = this.sliderNew.querySelector('.field-position');
+    this.btnAddEnd = this.sliderNew.querySelector('.add-end').addEventListener(
+        'click', ()=> {
+     if(this.inputTitle.value !== '' && this.inputDescr.value !== ''
+     && this.inputPosition.value === '') {
+        this.addSlide(this.inputTitle.value, this.inputDescr.value);
+     }
+    });
     this.addSlide = function (title, descr) {
         const div = document.createElement('div');
         div.classList.add('carousel-item');
@@ -109,28 +119,35 @@ function Slider(sliderEl) {
             count = 1;
             this.firstSlide();
         };
-        inputTitle.value = '';
-        inputDescr.value = '';
+        this.inputTitle.value = '';
+        this.inputDescr.value = '';
     };
 
+    this.btnAddPosition = this.sliderNew.querySelector('.add-position').addEventListener(
+        'click', ()=> {
+     if(this.inputTitle.value !== '' &&  this.inputDescr.value !== '' 
+     &&  this.inputPosition.value !=='') {
+        this.insertSlide(this.inputTitle.value, 
+         this.inputDescr.value, this.inputPosition.value);
+     }
+    });
     this.insertSlide = function (title, descr, number) {
         let selectValue = (number)-1;
         
         if (Number.isNaN(selectValue)) {
-            inputTitle.value = '';
-            inputDescr.value = '';
-            inputPosition.value = '';
+            this.inputTitle.value = '';
+            this.inputDescr.value = '';
+            this.inputPosition.value = '';
             return; 
         };
 
         if (selectValue > (this.sliderEl.children.length)-1) {
-            inputTitle.value = '';
-            inputDescr.value = '';
-            inputPosition.value = '';
+            this.inputTitle.value = '';
+            this.inputDescr.value = '';
+            this.inputPosition.value = '';
             return;
         };
-      
-        
+
         const div = document.createElement('div');
         div.classList.add('carousel-item');
         div.classList.add('hide');
@@ -149,11 +166,13 @@ function Slider(sliderEl) {
         count = 1;
         this.firstSlide();
 
-        inputTitle.value = '';
-        inputDescr.value = '';
-        inputPosition.value = '';
+        this.inputTitle.value = '';
+        this.inputDescr.value = '';
+        this.inputPosition.value = '';
     };
 
+    this.btnRemoveEnd = this.sliderNew.querySelector('.remove-end').addEventListener(
+        'click', ()=> {this.removeLastSlide()});
     this.removeLastSlide = function() {
         let last = (this.sliderEl.children.length)-1;
         this.sliderEl.children[last].remove();
@@ -161,62 +180,31 @@ function Slider(sliderEl) {
         this.lastSlide();
     };
 
+    this.inputSlideRemove = this.sliderNew.querySelector('.field-remove');
+    this.btnRemovePosition = this.sliderNew.querySelector('.remove-position').addEventListener(
+        'click', ()=> {
+        if(this.inputSlideRemove.value !== '') {
+            this.removeSlide(this.inputSlideRemove.value);
+        }
+    });
     this.removeSlide = function(number) {
         let removeValue = (number)-1;
 
         if (Number.isNaN(removeValue)) {
-            inputSlideRemove.value = '';
+            this.inputSlideRemove.value = '';
             return; 
         };
 
         if (removeValue > (this.sliderEl.children.length)-1) {
-            inputSlideRemove.value = '';
+            this.inputSlideRemove.value = '';
             return;
         };
 
         this.sliderEl.children[removeValue].remove();
         count = 1;
         this.firstSlide();
-        inputSlideRemove.value = '';
+        this.inputSlideRemove.value = '';
     }
 };
 
-const slider = new Slider(document.getElementById('carousel-inner'));
-
-
-
-btnNext.addEventListener('click', ()=> {slider.nextSlide()});
-
-btnPrev.addEventListener('click', ()=> {slider.prevSlide()});
-
-btnFirst.addEventListener('click', ()=> {slider.firstSlide()});
-
-btnLast.addEventListener('click', ()=> {slider.lastSlide()});
-
-btnOpenByNum.addEventListener('click', ()=> {
-    if(inputSlideNum.value !== '') {
-        slider.openSlideByIndex(inputSlideNum.value);
-    }
-});
-
-btnAddEnd.addEventListener('click', ()=> {
-    if(inputTitle.value !== '' && inputDescr.value !== ''
-    && inputPosition.value === '') {
-        slider.addSlide(inputTitle.value, inputDescr.value);
-    }
-});
-
-btnAddPosition.addEventListener('click', ()=> {
-    if(inputTitle.value !== '' && inputDescr.value !== '' 
-    && inputPosition.value !=='') {
-        slider.insertSlide(inputTitle.value, inputDescr.value, inputPosition.value);
-    }
-});
-
-btnRemoveEnd.addEventListener('click', ()=> {slider.removeLastSlide()});
-
-btnRemovePosition.addEventListener('click', ()=> {
-    if(inputSlideRemove.value !== '') {
-        slider.removeSlide(inputSlideRemove.value);
-    }
-});
+const slider = new Slider(document.getElementById('carousel-slider'));
