@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework</title>
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="users-lists">
+            <ul class="list-user" id="user-list">
+
+            </ul>
+            <ul class="list-user" id="new-users-list">
+    
+            </ul>
+        </div>
+        <script type="text/html" id="card-template">
+            <li class="card">
+                <img src="{{avatar}}" alt="{{name}}" />
+                <p>{{name}}</p>
+                <p>{{email}}</p>
+            </li>
+        </script>
+        <button id="btn-prev" disabled>Previous</button>
+        <button  id="btn-next" disabled>Next</button>
+        <form action="" class="form-add" id="form">
+            <input class="field" type="text" name="user-first-name" id="First-name" placeholder="First name">
+            <input class="field" type="text" name="user-last-name" id="Last-name" placeholder="Last name">
+            <input class="field" type="email" name="useremail" id="email"placeholder="Email">
+            <input class="field" type="text" name="user-job" id="job" placeholder="Job">
+            <button class="btn" id="btn-create">Create</button>
+        </form>
+    </div>    
+</body>
+</html>
