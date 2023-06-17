@@ -1,5 +1,5 @@
 const cardTemplate =  document.getElementById('card-template');
-const userList = document.querySelector('#user-list');
+const userList = document.getElementById('user-list');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 
@@ -51,10 +51,38 @@ function renderUserList(responseData){
            currentUser = currentUser.replaceAll(`{{${key}}}`,user[key])});
         res += currentUser;
        });
-userList.innerHTML = res;
+ userList.innerHTML = res;
+
+ const dobleUserList = userList.querySelectorAll('li');
+
+ con (dobleUserList);
 
 };
+
+
+function con (dobleUserList) {
+    dobleUserList.forEach(function(item){
+        const btnDelete = document.createElement('button');
+        btnDelete.innerText = `Delete user`;
+   
+        btnDelete.addEventListener('click', ()=> {
+           requestDelUser(item, item.id);
+        });
+   
+        const btnUpdate = document.createElement('button');
+        btnUpdate.innerText = `Update user`;
+
+        btnUpdate.addEventListener('click', ()=> {
+         requestUpdUserServer(item, item.id);
+        });
+       item.append(btnDelete,btnUpdate);
+   })
+   return dobleUserList;
+};  
+     
+
  
+
 btnPrev.addEventListener('click', ()=> {
     count--;
     fetchUsers();
@@ -89,7 +117,7 @@ function CreateNewUser() {
     xhr.onload = (e) =>{
         try {
             const responsNew = JSON.parse(e.target.response); 
-            console.log(responsNew);
+
             createNewLiUser(responsNew);
 
             inputFirstName.value = ''; 
@@ -106,7 +134,7 @@ function createNewLiUser(responsData) {
     const li = document.createElement('li');
     li.classList.add('card');
 
-    li.innerText = `${responsData.first_name} ${responsData.last_name} ID: ${responsData.id}
+    li.innerText = `${responsData.first_name} ${responsData.last_name}
     ${responsData.email} 
     ${responsData.job}`;
 
@@ -251,6 +279,7 @@ function login(){
         try {
             const responsLog = JSON.parse(e.target.status);
             checkLogInfo(responsLog);
+
         } catch (e) {
             console.warn(e);
         }
@@ -311,6 +340,8 @@ formLogin.addEventListener('submit', (e) => {
          login();
      }
 });
+
+
 
 
 function requestDelUser(li,userId) {
@@ -379,19 +410,13 @@ function requestUpdUser(li, userId) {
         ) {
             
             upDateN(inputNewFirstName.value ,inputNewLastName.value,
-                inputNewEmail.value, inputNewJob.value);
-
-                inputNewFirstName.value = ''; 
-                inputNewLastName.value = ''; 
-                inputNewEmail.value = '';
-                inputNewJob.value = '';
-
+                inputNewEmail.value, inputNewJob.value, li);
         }
     });
 
 function upDateN(name1, name2, email, job){
     xhr.open('PUT', `https://reqres.in/api/users/${userId}`, true);
-    
+
     const infoToSend = {
         first_name: name1, 
         last_name: name2,
@@ -412,4 +437,86 @@ function upDateN(name1, name2, email, job){
         }
     }
 };
+};
+
+
+function requestUpdUserServer(li, userId) {
+
+    const formUpdate = document.createElement('form');
+
+    const inputNewFirstName =  document.createElement('input');
+    inputNewFirstName.setAttribute('type','text');
+    inputNewFirstName.setAttribute('id','new-first-name');
+    inputNewFirstName.setAttribute('placeholder','New first name');
+    inputNewFirstName.classList.add('field');
+
+    const inputNewLastName =  document.createElement('input');
+    inputNewLastName.setAttribute('type','text');
+    inputNewLastName.setAttribute('id','new-last-name');
+    inputNewLastName.setAttribute('placeholder','New last name');
+    inputNewLastName.classList.add('field');
+
+    const inputNewEmail =  document.createElement('input');
+    inputNewEmail.setAttribute('type','email');
+    inputNewEmail.setAttribute('id','new-email');
+    inputNewEmail.setAttribute('placeholder','New email');
+    inputNewEmail.classList.add('field');
+
+    const btnUpdateNow = document.createElement('button');
+    btnUpdateNow.innerText = `Update user NOW`
+
+    li.append(formUpdate);
+    formUpdate.append(inputNewFirstName, inputNewLastName, 
+    inputNewEmail, btnUpdateNow);
+
+    formUpdate.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (
+            inputNewFirstName.value !== '' &&
+            inputNewLastName.value !== '' &&
+            inputNewEmail.value !== ''
+        ) {           
+            upDateN(inputNewFirstName.value ,inputNewLastName.value,
+                inputNewEmail.value, li);
+        }
+    });
+
+  function upDateN(name1, name2, email, li){
+    xhr.open('PATCH', `https://reqres.in/api/users/${userId}`, true);
+
+    const infoToSend = {
+        first_name: name1, 
+        last_name: name2,
+        email: email
+    };
+
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(infoToSend));
+
+    xhr.onload = (e) =>{
+        try {
+            const respon = JSON.parse(e.target.response);
+            formUpdate.remove();
+            renderUser(respon, li); 
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+    
+  };
+
+};
+
+function renderUser(responseData, li){
+        responseData["name"] = `${responseData.first_name} ${responseData.last_name}`;
+
+        li.classList.add('upd');
+        
+        const newli  = userList.querySelector('.upd');
+
+        newli.children[1].innerHTML = responseData.name;
+        newli.children[2].innerHTML = responseData.email;
+
+        li.classList.remove('upd');
+       return li = newli;
 };
