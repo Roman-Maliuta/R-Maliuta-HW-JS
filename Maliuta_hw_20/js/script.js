@@ -262,12 +262,12 @@ inputPass.addEventListener('focus', () => {
 });
 
 
-function login(){
+ function login(){
+
     const infoToLogin = {
         email: inputEmailLogin.value,
         password: inputPass.value,
     };
-
     fetch('https://reqres.in/api/login', {
         method:'POST',
         headers: {
@@ -275,12 +275,17 @@ function login(){
         },
         body: JSON.stringify(infoToLogin)
     })
-    .then(response = (response) => {
+    .then(response=(response)=>{
         const responsLog = response.status;
         checkLogInfo(responsLog);
+        return response.json()
+    })
+    .then(response=(response)=>{
+        const responsToken = Object.values(response).toLocaleString();
     })
     .catch(error => console.log(error))
 };
+
 
 inputPass.addEventListener('blur', () => {
     let passValue = inputPass.value;
@@ -318,9 +323,10 @@ function checkLogInfo(responInfo) {
         formAdd.classList.add('form');
         btnPrev.classList.remove('hide');
         btnNext.classList.remove('hide');
+        messageFinal.classList.add('hide');
     } else{
         messageFinal.classList.add('message-fail');
-        messageFinal.textContent = `Error: User not found!`
+        messageFinal.textContent = `Error: User not found! Check Email or password`
         inputEmailLogin.value  = '';
         inputPass.value = '';
     }
@@ -363,7 +369,7 @@ let btnUpdateNow;
 let btnCancelUpdate;
 
 
-function formInputCreate (){
+function formInputCreate() {
        
    formUpdate = document.createElement('form');
 
@@ -407,7 +413,7 @@ function requestUpdUser(li, userId) {
     li.append(formUpdate, btnCancelUpdate);
 
     formUpdate.append(inputNewFirstName, inputNewLastName, 
-    inputNewEmail, inputNewJob, btnUpdateNow,);
+    inputNewEmail, inputNewJob, btnUpdateNow);
 
     formUpdate.addEventListener('submit', (e) => {
         e.preventDefault();
