@@ -1,0 +1,59 @@
+@import '_form-style';
+body {
+    font: 16px/26px 'Times New Roman', sans-serif;
+    color: #000;
+    background: #F2F2F2;
+    margin: 0;
+}
+
+.wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: rgb(236, 234, 225);
+}
+.users-lists {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+.message-fail{
+    font-size: 18px;
+    color: red;
+    margin: 10px;
+}
+
+.list-user {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid green;
+    border-radius: 5px;
+    background-color: #ecc164;
+}
+
+.h4 {
+    margin: 5px;
+    text-align: center; 
+}
+.btn{
+    margin: 5px;
+}
+
+.user-data {
+    margin: 5px;   
+}
+

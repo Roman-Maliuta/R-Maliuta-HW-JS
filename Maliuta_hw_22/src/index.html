@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_22</title>
+    <script src="js/script.js" type="module" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrap">
+        <form action=""  class="form" id="login-form">
+            <input class="field" type="text" name="email" id="login-email" placeholder="Email">
+            <p id="p-wrong-email" class="message-fail"></p>
+    
+            <input class="field" type="text" name="password" id="login-pass" placeholder="Password">
+            <p id="p-wrong-pass" class="message-fail"></p>
+            
+            <button id="btn" disabled>Log in</button>
+        </form>
+        <p class="message-final"></p>
+        <button class="btn hide" id="btn-logout">Log out</button> 
+        <div class="users-lists">
+            <ul class="list-user" id="user-list">
+
+            </ul>
+            <ul class="list-user" id="new-users-list">
+    
+            </ul>
+        </div>
+        <script type="text/html" id="card-template">
+            <li class="card">
+                <img src="{{avatar}}" alt="{{id}}" />
+                <p class="user-data">{{name}}</p>
+                <p class="user-data">{{email}}</p>
+                <p class="user-data">ID:<span>{{id}}</span></p>
+            </li>
+        </script>
+        <button id="btn-prev" class="btn hide" disabled>Previous</button>
+        <button  id="btn-next" class="btn hide" disabled>Next</button>
+        <form action="" class="hide" id="form-add">
+            <input class="field" type="text" name="user-first-name" id="First-name" placeholder="First name">
+            <input class="field" type="text" name="user-last-name" id="Last-name" placeholder="Last name">
+            <input class="field" type="email" name="useremail" id="email"placeholder="Email">
+            <input class="field" type="text" name="user-job" id="job" placeholder="Job">
+            <button class="btn" id="btn-create">Create</button>
+        </form>
+    </div>    
+</body>
+</html>
