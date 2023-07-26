@@ -1,0 +1,45 @@
+body {
+    font: 300 16px/26px 'Times New Roman', sans-serif;
+    color: #465a64;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.vote-holder{
+    display: flex;
+    gap: 15px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.vote-section {
+    border: 1px solid olive;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.btn-res {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 45%;
+    padding: 5px;
+    background-color: bisque;
+    color: red;
+    border: 1px solid olive;
+     border-radius: 5px;
+
+}
+
+.winner{
+    font-size: 40px;
+    font-weight: 700;
+    color: red;
+    margin: 10px;
+    text-align: center;
+}
