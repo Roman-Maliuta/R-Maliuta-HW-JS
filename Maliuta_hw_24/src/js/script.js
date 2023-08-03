@@ -17,7 +17,7 @@ class App extends Component{
         return (
         <Fragment>
         <div className='vote-holder'>
-            <VoteSection elNum={'Smile-1'} numSmile={<h3>Smile 1</h3>}/>
+         <VoteSection elNum={'Smile-1'} numSmile={<h3>Smile 1</h3>}/>
                 
          <VoteSection elNum={'Smile-2'} numSmile={<h3>Smile 2</h3>}/>
                 
@@ -57,43 +57,46 @@ class App extends Component{
             count++;
         } 
 
-        console.log(count);
         if (count === 3) {
-         return this.setState({
-              resVote: "Haven't winners"
-        }) 
-        } else if (count >= 1) {
+            return this.setState({
+                resVote: "Haven't winners"
+            })
+        } else  {
 
-           if (one == winner) {
-                  if (one == two) {
-                   return this.setState({
-                     resVote: `${smileOne.children[0].innerHTML} and ${smileTwo.children[0].innerHTML}`
-                   })
-                } else if (one == three) {
-                   return this.setState({
-                     resVote: `${smileOne.children[0].innerHTML} and ${smileThree.children[0].innerHTML}`
-                    })
-                  } else {
+            if (one == winner) {
+                if (one == two) {
                     return this.setState({
-                     resVote: smileOne.children[0].innerHTML
+                        resVote: `${smileOne.children[0].innerHTML} and ${smileTwo.children[0].innerHTML}`
+                    })
+                } else if (one == three) {
+                    return this.setState({
+                        resVote: `${smileOne.children[0].innerHTML} and ${smileThree.children[0].innerHTML}`
+                    })
+                } else {
+                    return this.setState({
+                        resVote: `${smileOne.children[0].innerHTML}`
                     })
                 }
             }
             if (two == winner) {
                 if (two == three) {
                     return this.setState({
-                     resVote: `${smileTwo.children[0].innerHTML} and ${smileThree.children[0].innerHTML}`
+                        resVote: `${smileTwo.children[0].innerHTML} and ${smileThree.children[0].innerHTML}`
                     })
                 } else if (one == three) {
                     return this.setState({
-                     resVote: smileTwo.children[0].innerHTML
+                        resVote: smileTwo.children[0].innerHTML
                     })
-                } 
+                } else {
+                    return this.setState({
+                        resVote: smileTwo.children[0].innerHTML
+                    })
+                }
             }
             if (three == winner) {
-                    return this.setState({
-                     resVote: smileThree.children[0].innerHTML
-                    })
+                return this.setState({
+                    resVote: smileThree.children[0].innerHTML
+                })
             }
 
         }
