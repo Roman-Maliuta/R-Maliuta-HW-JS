@@ -8,7 +8,6 @@ import { PhotosList} from "./PhotosList.jsx";
 export const App = () => {
   return (
     <>
-      <Outlet/>
       <button className='btn-open'>
         <Link to="/ContactsList" className='link'>Open contacts list</Link>
       </button>
